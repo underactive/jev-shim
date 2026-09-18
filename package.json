@@ -1,0 +1,60 @@
+{
+	"name": "@underactive/jev-shim",
+	"version": "0.1.0",
+	"description": "Generic Jev classifiers and a framework-free OpenAI chat-completions facade",
+	"keywords": [
+		"jev",
+		"classifier",
+		"openai"
+	],
+	"license": "MIT",
+	"author": "Eric Sison",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/underactive/jev-shim.git"
+	},
+	"bugs": {
+		"url": "https://github.com/underactive/jev-shim/issues"
+	},
+	"homepage": "https://github.com/underactive/jev-shim#readme",
+	"type": "module",
+	"engines": {
+		"node": ">=22.19.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"types": "./dist/index.d.ts",
+	"bin": {
+		"jev-shim-adhoc": "dist/bin/adhoc.js"
+	},
+	"files": [
+		"dist/**/*.js",
+		"dist/**/*.d.ts",
+		"dist/**/*.map",
+		"index.ts",
+		"src/**/*.ts",
+		"README.md",
+		"LICENSE",
+		"CHANGELOG.md"
+	],
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"build": "tsc -p tsconfig.build.json && chmod +x dist/bin/adhoc.js",
+		"test": "node --test test/*.test.ts",
+		"prepublishOnly": "npm run typecheck && npm test && npm run build"
+	},
+	"dependencies": {
+		"@typesafe-ai/sdk": "0.6.0"
+	},
+	"devDependencies": {
+		"@types/node": "^24.0.0",
+		"typescript": "^5.9.3"
+	}
+}
